@@ -1414,6 +1414,12 @@ effect must be bounded.
 Software can use the PAUSE instruction to reduce energy consumption while
 executing spin-wait code sequences.  Multithreaded cores might temporarily
 relinquish execution resources to other harts when PAUSE is executed.
+
+The duration of a PAUSE instruction's effect may vary significantly within and
+among implementations.
+Portable software should not use more than one PAUSE instruction before
+re-evaluating loop conditions, else performance might substantially degrade on
+other implementations, or even on some executions on the same implementation.
 \end{commentary}
 
 PAUSE is encoded as a FENCE instruction with {\em pred}=W and {\em succ}=0.
